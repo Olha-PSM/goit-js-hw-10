@@ -24,20 +24,22 @@ fetchBreeds()
     loader.style.display = 'none';
   })
   .catch(error => {
-    onFetchError(error);
-  });
+    Notiflix.Notify.failure(
+      'Oops! Something went wrong! Try reloading the page!'
+    );
+  })
+  .finally(() => {});
 
 breedSelect.addEventListener('change', onChangeSelect);
+
 function onChangeSelect(event) {
   loader.style.display = 'block';
   const breedId = event.currentTarget.value;
 
   fetchCatByBreed(breedId)
     .then(data => {
-      loader.style.display = 'none';
-
       const { url, breeds } = data[0];
-
+      catInfo.classList.add('hidden');
       catInfo.innerHTML = `<img src="${url}" alt="${breeds[0].name}" width="400"/>
       <div class="description">
       <h1>${breeds[0].name}</h1>
@@ -47,13 +49,12 @@ function onChangeSelect(event) {
     })
 
     .catch(error => {
-      onFetchError(error);
+      Notiflix.Notify.failure(
+        'Oops! Something went wrong! Try reloading the page!'
+      );
+      catInfo.style.display = 'none';
+    })
+    .finally(() => {
+      loader.style.display = 'none';
     });
-}
-function onFetchError(error) {
-  breedSelect.style.display = 'none';
-  loader.style.display = 'none';
-  Notiflix.Notify.failure(
-    'Oops! Something went wrong! Try reloading the page!'
-  );
 }
