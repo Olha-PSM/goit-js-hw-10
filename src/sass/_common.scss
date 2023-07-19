@@ -1,1 +1,28 @@
 @import '~node_modules/modern-normalize/modern-normalize.css';
+
+.breed-select {
+  max-width: 500px;
+  margin: auto;
+  color: black;
+  font-size: 18px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.cat-info {
+  margin-top: 20px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+img {
+  display: block;
+  max-width: 700px;
+  height: auto;
+  border-radius: 5px;
+  border: 2px solid#000;
+  transition: all 0.2s;
+  box-shadow: -10px -10px 30px #fff, 10px 10px 30pxrgba (29, 13, 202, 0.09);
+  margin-bottom: 50px;
+}
