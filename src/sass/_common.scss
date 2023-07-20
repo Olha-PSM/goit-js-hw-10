@@ -1,9 +1,12 @@
 @import '~node_modules/modern-normalize/modern-normalize.css';
+body {
+  background-color: ghostwhite;
+}
 .hidden {
   display: none;
 }
 .breed-select {
-  max-width: 500px;
+  max-width: 700px;
   margin: auto;
   color: black;
   font-size: 18px;
@@ -20,11 +23,11 @@
 }
 img {
   display: block;
-  max-width: 700px;
-  height: auto;
+
+  max-width: 400px;
+  max-height: 400px;
   border-radius: 5px;
   border: 2px solid#000;
   transition: all 0.2s;
-  box-shadow: -10px -10px 30px #fff, 10px 10px 30pxrgba (29, 13, 202, 0.09);
   margin-bottom: 50px;
 }

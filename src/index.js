@@ -15,31 +15,40 @@ error.style.display = 'none';
 
 fetchBreeds()
   .then(data => {
-    const markup = data
-      .map(({ id, name }) => `<option value="${id}">${name}</option>`)
-      .join('');
-    breedSelect.innerHTML = markup;
+    breedSelect.hidden = false;
+    breedSelect.insertAdjacentHTML(
+      'afterbegin',
+      `<option value="" disabled="disabled" selected="selected"  >Please, select cat</option`
+    );
+    data.map(breed =>
+      breedSelect.insertAdjacentHTML(
+        'beforeend',
+        `<option value="${breed.id}">${breed.name}</option>`
+      )
+    );
+
     breedSelect.style.display = 'block';
     error.style.display = 'none';
     loader.style.display = 'none';
   })
+
   .catch(error => {
     Notiflix.Notify.failure(
       'Oops! Something went wrong! Try reloading the page!'
     );
-  })
-  .finally(() => {});
+  });
 
 breedSelect.addEventListener('change', onChangeSelect);
 
 function onChangeSelect(event) {
   loader.style.display = 'block';
-  const breedId = event.currentTarget.value;
 
+  const breedId = event.currentTarget.value;
+  catInfo.style.display = 'block';
   fetchCatByBreed(breedId)
     .then(data => {
       const { url, breeds } = data[0];
-      catInfo.classList.add('hidden');
+
       catInfo.innerHTML = `<img src="${url}" alt="${breeds[0].name}" width="400"/>
       <div class="description">
       <h1>${breeds[0].name}</h1>
